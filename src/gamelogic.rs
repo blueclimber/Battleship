@@ -39,6 +39,8 @@ pub fn game_loop() {
 /// Creates a new computer_grid (the computer's gameboard), user_grid (the user's
 /// game board) and guessing_points (a reference for the computer to guide it's
 /// guesses).
+/// Asks the user how difficult they want the game
+/// Prints a endgame message
 ///  
 fn game() {
     let mut computer_grid = Grid::new();
