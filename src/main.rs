@@ -38,19 +38,30 @@ fn game() {
     let mut user_grid = Grid::new();
     let mut guessing_points = PossibleGuesses::new();
 
-    let mut finished = false;
+    println!("What level of difficulty do you want? Press 'h' for hard and 'e' for easy");
+    let mut diff = "".to_string();
+    io::stdin()
+        .read_line(&mut diff)
+        .expect("error: unable to read input");
+    let diff = diff.trim().to_string();
+    if diff == *"h" {
+        guessing_points.difficult = true;
+    }
+
     computer_grid.set_computer_ships();
 
     user_grid.request_user_ships();
 
     loop {
         display_game(&computer_grid, &user_grid);
-        finished = computer_grid.request_user_guess();
+        let finished = computer_grid.request_user_guess();
         if finished {
+            println!("Congratulations! You won!");
             break;
         }
-        finished = user_grid.make_computer_guess(&mut guessing_points);
+        let finished = user_grid.make_computer_guess(&mut guessing_points);
         if finished {
+            println!("Too bad, you lost. Try again?");
             break;
         }
     }
