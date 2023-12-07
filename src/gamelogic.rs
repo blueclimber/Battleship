@@ -21,14 +21,14 @@ fn display_game(computer: &Grid, user: &Grid) {
 pub fn game_loop() {
     loop {
         game();
-        println!("Play again?\nPress 'n' for new game, any other key to quit.");
+        println!("Play again?\nPress 'y' for a new game, any other key to quit.");
         let mut in_string = "".to_string();
 
         io::stdin()
             .read_line(&mut in_string)
             .expect("error: unable to read input");
         in_string = in_string.trim().to_string();
-        if in_string != *"n" {
+        if in_string != *"y" {
             break;
         }
     }
